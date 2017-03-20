@@ -9,7 +9,12 @@ RUN lazy-apt \
     zlib1g-dev \
     \
     patch \
-    git
+    git \
+    \
+    bats \
+    shunit2 \
+    \
+    zsh zsh-lovers
 
 COPY build.d build.d
 RUN build-parts build.d
