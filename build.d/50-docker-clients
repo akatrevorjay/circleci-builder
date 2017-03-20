@@ -1,0 +1,19 @@
+#!/bin/bash
+set -eo pipefail
+set -xv
+pushd /tmp
+
+docker_version="17.03.0-ce"
+fn="docker-$docker_version.tgz"
+
+curl -sSLf -o "$fn" \
+"https://get.docker.com/builds/Linux/x86_64/docker-$docker_version.tgz"
+tar -zvxf "$fn"
+mv -v /tmp/docker/* /usr/local/bin/
+
+compose_version="1.11.2"
+
+curl -sSLf -o docker-compose \
+"https://github.com/docker/compose/releases/download/$compose_version/docker-compose-$(uname -s)-$(uname -m)"
+chmod +x docker-compose
+mv -v docker-compose /usr/local/bin/
