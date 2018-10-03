@@ -3,7 +3,7 @@ set -eo pipefail
 set -xv
 pushd /tmp
 
-docker_version="17.03.0-ce"
+docker_version="17.07.0-ce"
 fn="docker-$docker_version.tgz"
 
 curl -sSLf -o "$fn" \
@@ -11,7 +11,7 @@ curl -sSLf -o "$fn" \
 tar -zvxf "$fn"
 mv -v /tmp/docker/* /usr/local/bin/
 
-compose_version="1.11.2"
+compose_version="1.22.0"
 
 curl -sSLf -o docker-compose \
 "https://github.com/docker/compose/releases/download/$compose_version/docker-compose-$(uname -s)-$(uname -m)"
