@@ -1,6 +1,12 @@
-FROM trevorj/boilerplate:zesty
+ARG BUILDER_PARENT_IMAGE="trevorj/boilerplate"
+ARG BUILDER_PARENT_TAG="devel"
 
-# Install base dependencies.
+##
+## Python base
+##
+
+FROM $BUILDER_PARENT_IMAGE:$BUILDER_PARENT_TAG
+
 RUN lazy-apt \
     build-essential \
     autoconf autoconf-archive pkg-config automake m4 libtool \
