@@ -1,5 +1,5 @@
 ARG BOILERPLATE_PARENT_IMAGE="trevorj/boilerplate"
-ARG BOILERPLATE_PARENT_TAG="devel"
+ARG BOILERPLATE_PARENT_TAG="rolling"
 
 ##
 ## Python base
@@ -33,7 +33,7 @@ RUN set -exv \
         ${py_major}-virtualenv \
         virtualenv \
         \
-        python3.7-pip \
+        python3.7-dev \
  \
  && virtualenv -p "$(which "$PYTHON")" "${VIRTUAL_ENV:?}" \
  && pip install -U pip setuptools wheel \
