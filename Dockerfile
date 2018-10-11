@@ -65,3 +65,14 @@ RUN lazy-apt \
 COPY build.d build.d
 RUN build-parts build.d
 
+RUN set -exv \
+ && for py in 2.7 3.6 3.7; do \
+        py=python$py \
+        &&  $py -m pip install -U \
+            coverage \
+            coveralls \
+            pytest \
+            pytest-cov \
+            tox \
+    ; done
+
