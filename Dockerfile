@@ -33,6 +33,7 @@ RUN set -exv \
         ${py_major}-virtualenv \
         virtualenv \
         \
+        python-pip \
         python3.7-dev \
  \
  && virtualenv -p "$(which "$PYTHON")" "${VIRTUAL_ENV:?}" \
