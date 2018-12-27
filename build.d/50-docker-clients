@@ -3,7 +3,7 @@ set -eo pipefail
 set -xv
 pushd /tmp
 
-docker_version="17.03.0-ce"
+docker_version="17.07.0-ce"
 fn="docker-$docker_version.tgz"
 
 curl -sSLf -o "$fn" \
