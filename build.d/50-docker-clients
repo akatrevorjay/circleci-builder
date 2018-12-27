@@ -7,11 +7,11 @@ docker_version="17.07.0-ce"
 fn="docker-$docker_version.tgz"
 
 curl -sSLf -o "$fn" \
-"https://get.docker.com/builds/Linux/x86_64/docker-$docker_version.tgz"
+"https://download.docker.com/linux/static/edge/x86_64/docker-$docker_version.tgz"
 tar -zvxf "$fn"
 mv -v /tmp/docker/* /usr/local/bin/
 
-compose_version="1.11.2"
+compose_version="1.22.0"
 
 curl -sSLf -o docker-compose \
 "https://github.com/docker/compose/releases/download/$compose_version/docker-compose-$(uname -s)-$(uname -m)"
