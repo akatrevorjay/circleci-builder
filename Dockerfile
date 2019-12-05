@@ -1,5 +1,7 @@
 ARG CI_BUILDER_PARENT_IMAGE="trevorj/boilerplate"
 ARG CI_BUILDER_PARENT_TAG="rolling"
+ARG CI_BUILDER_ABI="unknown"
+
 FROM $CI_BUILDER_PARENT_IMAGE:$CI_BUILDER_PARENT_TAG
 MAINTAINER Trevor Joynson "<docker@trevor.joynson.io>"
 
