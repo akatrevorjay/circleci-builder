@@ -19,7 +19,7 @@ RUN lazy-apt \
     shunit2 \
     shellcheck \
     \
-    zsh zsh-lovers \
+    zsh \
     \
     vim-nox
 
