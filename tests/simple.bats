@@ -33,13 +33,13 @@ run-in-image() {
 
 @test "[python2] print hello world" {
 	expected="hello world"
-	result=$(run-in-image -- bash -c $'python2 -c "print(\'hello world\')"')
+	result=$(run-in-image -- python2 -c "print('hello world')")
 	[[ "$result" == "$expected" ]]
 }
 
 @test "[python3] print hello world" {
 	expected="hello world"
-	result=$(run-in-image -- bash -c $'python3 -c "print(\'hello world\')"')
+	result=$(run-in-image -- python3 -c "print('hello world')")
 	[[ "$result" == "$expected" ]]
 }
 
