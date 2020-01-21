@@ -1,5 +1,5 @@
 ARG CI_BUILDER_PARENT_IMAGE="trevorj/boilerplate"
-ARG CI_BUILDER_PARENT_TAG="rolling"
+ARG CI_BUILDER_PARENT_TAG="bionic"
 ARG CI_BUILDER_ABI="unknown"
 
 FROM $CI_BUILDER_PARENT_IMAGE:$CI_BUILDER_PARENT_TAG
@@ -41,7 +41,7 @@ RUN set -exv \
 # Default python (version or basename)
 ARG PYTHON=python3.6
 # Pythons you want available
-ARG PYTHON_VERSIONS="2.7 3.5 3.6 3.7"
+ARG PYTHON_VERSIONS="2.7 3.5 3.6 3.7 3.8 3.9"
 
 RUN set -exv \
  && lazy-apt \
