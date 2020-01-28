@@ -14,6 +14,8 @@ RUN lazy-apt \
     zlib1g-dev \
     libffi-dev \
     \
+    libpq-dev \
+    \
     patch \
     git \
     \
