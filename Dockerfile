@@ -41,9 +41,9 @@ RUN set -exv \
  && :
 
 # Default python (version or basename)
-ARG PYTHON=python3.7
+ARG PYTHON=python3.8
 # Pythons you want available
-ARG PYTHON_VERSIONS="2.7 3.5 3.6 3.7"
+ARG PYTHON_VERSIONS="2.7 3.5 3.6 3.7 3.8 3.9"
 
 RUN set -exv \
  && lazy-apt \
@@ -60,12 +60,29 @@ RUN set -exv \
  && :
 
 RUN set -exv \
- && pip3 install virtualenv-multiver
+ && pip3 install -U virtualenv virtualenv-multiver
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     VIRTUAL_ENV="/venv"
 ENV PATH="$APP_PATH:$VIRTUAL_ENV/bin:$IMAGE_PATH:$PATH"
+
+RUN set -exv \
+ \
+ && get_pip_uri="https://bootstrap.pypa.io/get-pip.py" \
+ && curl -sSLfo get-pip.py "$get_pip_uri" \
+ \
+ && for py in $(echo $PYTHON_VERSIONS); do \
+        py=python$py \
+        \
+        &&  ($py -m pip -V || $py get-pip.py) \
+        \
+        &&  $py -m pip install -U \
+            setuptools wheel pip \
+    ; done \
+ \
+ && rm -vf get-pip.py \
+ && :
 
 # Setting up a global virtualenv with all pythons avoids any issues after updating pip in a single copy
 # (as well as keeps the system nice and clean)
