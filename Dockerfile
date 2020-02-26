@@ -43,7 +43,8 @@ RUN set -exv \
 # Default python (version or basename)
 ARG PYTHON=python3.8
 # Pythons you want available
-ARG PYTHON_VERSIONS="2.7 3.5 3.6 3.7 3.8 3.9"
+# note how the default is last
+ARG PYTHON_VERSIONS="2.7 3.5 3.6 3.7 3.9 3.8"
 
 RUN set -exv \
  && lazy-apt \
