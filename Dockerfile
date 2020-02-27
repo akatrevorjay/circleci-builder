@@ -61,7 +61,7 @@ RUN set -exv \
  && :
 
 RUN set -exv \
- && pip3 install -U virtualenv virtualenv-multiver
+ && pip3 install -U "virtualenv<20" virtualenv-multiver
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
