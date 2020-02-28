@@ -60,9 +60,6 @@ RUN set -exv \
     python-pip python3-pip python3-setuptools python3-wheel virtualenv \
  && :
 
-RUN set -exv \
- && pip3 install -U "virtualenv<20" virtualenv-multiver
-
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     VIRTUAL_ENV="/venv"

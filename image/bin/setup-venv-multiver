@@ -62,16 +62,31 @@ setup-venv() {
 
 	declare -p ver2py_map
 
-	local pyver pybin
+	local pyver pyxybin
 	for pyver in ${(k)ver2py_map}; do
-		pybin=${ver2py_map[$pyver]}
+		pyxybin=${ver2py_map[$pyver]}
+		pyxbin=python${pyver:0:1}
 
-		printf '-- pyver=%s pybin=%s\n' ${(q)pyver} ${(q)pybin}
+		printf '-- pyver=%s pyxybin=%s\n' ${(q)pyver} ${(q)pyxybin}
 
-		$pre rm -vf $venv/bin/python
-		# This always fails. ugh.
-		$pre virtualenv-multiver $venv $pyver
-		[[ -f $venv/bin/$pybin ]]
+		# virtualenv seems to either create the binary as pythonX.Y or as simply python.
+		# We can't trust that it won't overwrite something we care about, so delete these links.
+		# They'll be rebuilt by virtualenv.
+		$pre rm -vf $venv/bin/{python,$pyxbin,$pyxybin}
+
+		$pre virtualenv -p $pyxybin $venv
+
+		(
+			cd $venv/bin
+
+			# if pythonX.Y is a symlink, we'll need to turn it into a proper executable.
+			if [[ -h $pyxybin ]]; then
+				mv -v python $pyxybin
+				ln -s python $pyxybin
+			fi
+		)
+
+		[[ -f $venv/bin/$pyxybin ]]
 	done
 
 	local def_python=(${(v)ver2py_map[-1]})
