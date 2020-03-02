@@ -57,7 +57,7 @@ RUN set -exv \
         esac; \
     done) \
     \
-    python-pip python3-pip python3-setuptools python3-wheel virtualenv \
+    python-pip python3-pip \
  && :
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -75,8 +75,9 @@ RUN set -exv \
         \
         &&  ($py -m pip -V || $py get-pip.py) \
         \
+        # unfortunately the apt provided copies of these are no bueno
         &&  $py -m pip install -U \
-            setuptools wheel pip \
+            setuptools wheel pip virtualenv \
     ; done \
  \
  && rm -vf get-pip.py \
@@ -91,8 +92,6 @@ RUN set -exv \
 RUN set -exv \
  && for py in $(echo $PYTHON_VERSIONS); do \
         py=python$py \
-        &&  $py -m pip install -U \
-            setuptools wheel pip \
         &&  $py -m pip install -U \
             coverage \
             coveralls \
