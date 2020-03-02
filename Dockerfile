@@ -77,7 +77,7 @@ RUN set -exv \
         \
         # unfortunately the apt provided copies of these are no bueno
         &&  $py -m pip install -U \
-            setuptools wheel pip virtualenv \
+            setuptools wheel pip "virtualenv<20" \
     ; done \
  \
  && rm -vf get-pip.py \
