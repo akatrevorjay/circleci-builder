@@ -81,12 +81,14 @@ setup-venv() {
 
 			# if pythonX.Y is a symlink, we'll need to turn it into a proper executable.
 			if [[ -h $pyxybin ]]; then
-				mv -v python $pyxybin
-				ln -s python $pyxybin
+				$pre mv -v python $pyxybin
+				$pre ln -sv $pyxybin python
 			fi
-		)
 
-		[[ -f $venv/bin/$pyxybin ]]
+			# [[ -f $pyxybin ]]
+			# [[ -h $pyxbin ]]
+			# [[ -h python ]]
+		)
 	done
 
 	local def_python=(${(v)ver2py_map[-1]})
@@ -110,7 +112,11 @@ set-venv-default-pybin() {
 	local venv=${1:?}
 	local pybin=${2:t}
 
-	$pre ln -sfvr $venv/bin/${pybin:?} $venv/bin/python
+	(
+		cd $venv/bin
+
+		$pre ln -sfv ${pybin:?} python
+	)
 }
 
 clear-active-venvs() {
