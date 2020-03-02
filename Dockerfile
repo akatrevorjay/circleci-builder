@@ -58,6 +58,7 @@ RUN set -exv \
     done) \
     \
     python-pip python3-pip \
+    python-zipp python3-zipp \
  && :
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -77,7 +78,7 @@ RUN set -exv \
         \
         # unfortunately the apt provided copies of these are no bueno
         &&  $py -m pip install -U \
-            setuptools wheel pip "virtualenv<20" \
+            setuptools wheel pip virtualenv \
     ; done \
  \
  && rm -vf get-pip.py \
